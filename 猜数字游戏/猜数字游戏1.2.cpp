@@ -1,6 +1,6 @@
 //猜数字游戏1.2版本
 //新增功能:
-//1.自行定义最大值和最小值（两者必须都为非负整数，且至少达到两者之差为1，不然没乐趣qwq）
+//1.自行定义最大值和最小值
 //下个版本(2.0)可能试图加上GUI（
 #include <iostream>
 #include <cstdlib>
@@ -17,6 +17,10 @@ int main(void){
         cin>>num_max;
         cout<<"请输入最小数:";
         cin>>num_min;
+        while(num_max-num_min<1){
+        	cout<<"你想一发即中(玩完全错误的游戏)吗?重新输入!(最大数和最小数一起输入):";
+        	cin>>num_max>>num_min;
+		}
         srand(time(NULL));
         true_num=(int)rand()%num_max+num_min;
         cout<<"数字范围为"<<num_min<<"~"<<num_max<<", 请输入一个数字:";
@@ -52,14 +56,15 @@ int main(void){
         Sleep(500);
         cout<<"您答了"<<" "<<errors<<" "<<"次"<<"\n";
         Sleep(1000);
-        if(errors==0&&win==0) cout<<"达成成就:您是不是作弊了?(故意找茬)";
-        if(errors==9&&win==0) cout<<"达成成就:一个十拿但九不稳的人(bushi";
-        if(cerrors==0&&win==1) cout<<"达成成就:让电脑一发即中";
-        if(num_min==num_max) cout<<"达成成就:标准答案成功放在面前(((";
+        if(errors==0&&win==0) cout<<"达成成就:您是不是作弊了?(故意找茬)\n";
+        if(errors==9&&win==0) cout<<"达成成就:一个十拿但九不稳的人(bushi\n";
+        if(cerrors==0&&win==1) cout<<"达成成就:让电脑一发即中\n";
+        if(num_min==num_max) cout<<"达成成就:标准答案成功放在面前(((\n";
         cout<<"\n要再玩一次吗？(y/n):";
         cin>>replay;
         if(replay=='n'){break;}
-    }
+        if(replay=='y'){errors=0;cerrors=0;}
+	}
     system("pause");
     return 0;
 }
